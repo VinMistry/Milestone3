@@ -1,5 +1,6 @@
 package com.moneysupermarket.milestonethree.controllers;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneysupermarket.milestonethree.models.CustomerProfile;
-import com.moneysupermarket.milestonethree.models.CustomerProfileResponse;
 import com.moneysupermarket.milestonethree.repositories.CustomerProfileRepository;
+import com.moneysupermarket.milestonethree.responses.CustomerProfileResponse;
 
 import lombok.AllArgsConstructor;
 
@@ -24,21 +25,33 @@ public class ProfileController {
 
   private CustomerProfileRepository customerProfileRepository;
 
-  @PostMapping(value = "people")
+  @PostMapping(value = "customerProfile")
   public ResponseEntity<CustomerProfileResponse> save(@RequestBody final CustomerProfile customerProfile) {
     customerProfileRepository.save(customerProfile);
     System.out.println(customerProfile);
     return new ResponseEntity<>(CustomerProfileResponse.builder().customerProfileID(UUID.randomUUID().toString()).build(), HttpStatus.OK);
   }
 
+  @GetMapping("/getAllProfiles")
+  public ResponseEntity<List> getAllCustomerProfiles() {
+    final List<CustomerProfile> customerProfile = customerProfileRepository.findAll();
+    if (!customerProfile.isEmpty()) {
+      customerProfile.forEach(customer -> System.out.println(customer));
+      return new ResponseEntity<>(customerProfile, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
   @GetMapping("/getProfile/{profileID}")
   public @ResponseBody
-  CustomerProfile getCustomerProfile(@PathVariable final String profileID) {
+  ResponseEntity<CustomerProfile> getCustomerProfile(@PathVariable final String profileID) {
     final Optional<CustomerProfile> customerProfile = customerProfileRepository.findById(profileID);
     if (customerProfile.isPresent()) {
       System.out.println(customerProfile.get());
-      return customerProfile.get();
+      return new ResponseEntity<>(customerProfile.get(), HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return null;
   }
 }

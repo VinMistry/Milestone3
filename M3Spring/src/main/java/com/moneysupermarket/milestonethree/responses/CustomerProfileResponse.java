@@ -1,4 +1,4 @@
-package com.moneysupermarket.milestonethree.models;
+package com.moneysupermarket.milestonethree.responses;
 
 
 import lombok.Builder;
