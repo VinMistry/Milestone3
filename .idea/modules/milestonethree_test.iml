@@ -20,9 +20,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="milestonethree_main" />
-    <orderEntry type="library" name="Gradle: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.12" level="project" />
-    <orderEntry type="library" name="Gradle: org.eclipse.jdt.core.compiler:ecj:3.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-parent:pom:2.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.mongojack:mongojack:2.9.4" level="project" />
     <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.18.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.0.5.RELEASE" level="project" />

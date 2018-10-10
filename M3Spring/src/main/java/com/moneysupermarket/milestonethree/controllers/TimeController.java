@@ -15,17 +15,19 @@ public class TimeController {
 
   private Time time;
 
+  private TimeService timeService = new TimeService();
+
   @GetMapping("/current-time")
   @ResponseBody
   public LocalTime showTime() {
-    time = new Time(TimeService.currentTime(), TimeService.canadaTime());
+    time = new Time(timeService.currentTime(), timeService.canadaTime());
     return time.getCurrentTime();
   }
 
   @GetMapping("/current-pdt-time")
   @ResponseBody
   public LocalTime showPDTTime() {
-    time = new Time(TimeService.currentTime(), TimeService.canadaTime());
+    time = new Time(timeService.currentTime(), timeService.canadaTime());
     return time.getCanadaTime();
   }
 
@@ -33,8 +35,9 @@ public class TimeController {
   @Scheduled(cron = "0 */3 * ? * *")
   @ResponseBody
   public Time showAllCurrentTimes() {
-    time = new Time(TimeService.currentTime(), TimeService.canadaTime());
+    time = new Time(timeService.currentTime(), timeService.canadaTime());
     System.out.println(time);
     return time;
   }
+
 }

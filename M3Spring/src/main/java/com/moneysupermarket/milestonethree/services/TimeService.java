@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TimeService {
 
-  public static LocalTime currentTime() {
+  public LocalTime currentTime() {
     return LocalTime.now();
   }
 
-  public static LocalTime canadaTime() {
+  public LocalTime canadaTime() {
     return LocalTime.now(ZoneId.of("UTC-7"));
   }
 
