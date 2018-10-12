@@ -73,8 +73,5 @@ class TimeControllerTest {
     assertEquals(200, result.getResponse().getStatus());
     assertEquals("application/json;charset=UTF-8", result.getResponse().getContentType());
   }
-
-  @Test
-  void showAllCurrentTimes() {
-  }
+  
 }
